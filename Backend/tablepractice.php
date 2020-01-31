@@ -60,22 +60,7 @@ $query=mysqli_query($conn,$sql);
       }
     } 
     ?>
- ?><!-- 
-    // if(mysqli_num_rows($query)>0)
-    // {
-    //   while($rows=mysqli_fetch_assoc($query))
-    //   {
-    //     echo '<tr>';
-    //     echo '<td>'.$rows['id'].'</td>';
-    //     echo '<td>'.$rows['firstname'].'</td>';
-    //     echo '<td>'.$rows['lastname'].'</td>';
-    //     echo '<td>'.$rows['email'].'</td>';
-    //     echo '<td>'.$rows['phonenumber'].'</td>';
-    //     echo '<td>'.$rows['feedback'].'</td>';
-    //     echo '<td><a href="delete.php ?id='.$rows['id'].'">Delete</a></td>';
-    //     echo '<td></td>';
-    //     echo '</tr>'; -->
-
+ ?>
 
     //   }
     // } 

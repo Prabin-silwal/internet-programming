@@ -26,7 +26,7 @@ $query=mysqli_query($conn,$sql);
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Contacts</div>
       <div class="list-group list-group-flush">
-       <a href="#" class="list-group-item list-group-item-action bg-light">Home</a>
+        <a href="index.php" class="list-group-item list-group-item-action bg-light">Home</a>
         <a href="menusshow.php" class="list-group-item list-group-item-action bg-light">Menus</a>
         <a href="databaseshow.php" class="list-group-item list-group-item-action bg-light">Contact</a>
         <a href="catagories.php" class="list-group-item list-group-item-action bg-light">Catagories</a>
@@ -55,9 +55,7 @@ $query=mysqli_query($conn,$sql);
       <tr class="success">
       <th scope="col">id</th>
       <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
       <th scope="col">Email</th>
-       <th scope="col">Phone Number</th> 
        <th scope="col">Feedback</th>
        <th>Actions</th>
        <th> </th>
@@ -73,9 +71,7 @@ $query=mysqli_query($conn,$sql);
    echo '<tr class="info">';
   echo '<td>'.$rows['id'].'</td>';        
   echo '<td>'.$rows['firstname'].'</td>';
-  echo '<td>'.$rows['lastname'].'</td>';
   echo '<td>'.$rows['email'].'</td>';
-  echo '<td>'.$rows['phonenumber'].'</td>';
   echo '<td>'.$rows['feedback'].'</td>';
   echo '<td><a href="delete.php?id='.$rows['id'].'" class="btn btn-danger">Delete</a></td>';
   echo '<td></td>';
@@ -88,7 +84,7 @@ $query=mysqli_query($conn,$sql);
 </div>
       </div>
     </div>
-    <!-- /#page-content-wrapper -->
+  
 
   </div>
 

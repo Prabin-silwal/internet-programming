@@ -32,12 +32,12 @@ else
 <body>
 	<form action="" method="POST">
 	<div class="form-group">
-  <label for="usr">Enter the Code:</label>
+ <input maxlength='5' value='0123456'/>
   <input type="number"  class="form-control" id="usr" name="code">
   <input type="submit" name="submit" value="Verify" class="btn btn-primary">
 </div>
 </form>
-<a href="sirproducts.php" class="btn btn-primary"></i>Skip</a>
+<a href="sirproduct.php" class="btn btn-primary"></i>Skip</a>
 </body>
 </html>
 <?php

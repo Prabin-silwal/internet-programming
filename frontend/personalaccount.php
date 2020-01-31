@@ -92,7 +92,8 @@ $query=mysqli_query($conn,$sql);
       <img  class="img-responsive" src="<?php echo $row['name'];?>".height="400" width="400">
             <input type="submit" name="delete" value="Delete" class="btn btn-danger" style="font-size: 20px;">    
       <input type="submit" name="unsold" value="Unsold" class="btn btn-success" style="font-size: 20px;">
-      <input type="hidden" name="id" value="<?php echo $row['id'];?>">   
+      <input type="hidden" name="id" value="<?php echo $row['id'];?>">  
+      <a href="edit1.php?id=<?php echo $row['id']?>" class="btn btn-primary" style="font-size: 20px;">Edit</a>
       <?php
     }
     else
@@ -102,6 +103,7 @@ $query=mysqli_query($conn,$sql);
  <div class="caption">
       <input type="submit" name="delete" value="Delete" class="btn btn-danger" style="font-size: 20px;">  
       <input type="submit" name="sold" value="Sold" class="btn btn-success" style="font-size: 20px;">
+       <a href="edit1.php?id=<?php echo $row['id']?>" class="btn btn-primary" style="font-size: 20px;">Edit</a>
       <input type="hidden" name="id" value="<?php echo $row['id'];?>">     
      </div>
     <?php

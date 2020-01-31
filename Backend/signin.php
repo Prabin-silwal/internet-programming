@@ -6,61 +6,100 @@
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style >
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #17a2b8;
-  height: 100vh;
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&subset=greek-ext');
+
+body{
+  background-image: url("https://images.pexels.com/photos/891252/pexels-photo-891252.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-position: center;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+  min-height:100vh;
+  font-family: 'Noto Sans', sans-serif;
 }
-#login .container #login-row #login-column #login-box {
-  margin-top: 120px;
-  max-width: 600px;
-  height: 350px;
-  border: 1px solid #9C9C9C;
-  background-color: #EAEAEA;
+.text-center{
+  color:#fff; 
+  text-transform:uppercase;
+    font-size: 23px;
+    margin: -50px 0 80px 0;
+    display: block;
+    text-align: center;
 }
-#login .container #login-row #login-column #login-box #login-form {
-  padding: 20px;
+.box{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+    background-color: rgba(0, 0, 0, 0.89);
+  border-radius:3px;
+  padding:70px 100px;
 }
-#login .container #login-row #login-column #login-box #login-form #register-link {
-  margin-top: -85px;
+.input-container{
+  position:relative;
+  margin-bottom:25px;
 }
+.input-container label{
+  position:absolute;
+  top:0px;
+  left:0px;
+  font-size:16px;
+  color:#fff; 
+    pointer-event:none;
+  transition: all 0.5s ease-in-out;
+}
+.input-container input{ 
+  border:0;
+  border-bottom:1px solid #555;  
+  background:transparent;
+  width:100%;
+  padding:8px 0 5px 0;
+  font-size:16px;
+  color:#fff;
+}
+.input-container input:focus{ 
+ border:none; 
+ outline:none;
+ border-bottom:1px solid #e74c3c; 
+}
+.btn{
+  color:#fff;
+  background-color:#e74c3c;
+  outline: none;
+    border: 0;
+    color: #fff;
+  padding:10px 20px;
+  text-transform:uppercase;
+  margin-top:50px;
+  border-radius:2px;
+  cursor:pointer;
+  position:relative;
+}
+.input-container input:focus ~ label,
+.input-container input:valid ~ label{
+  top:-12px;
+  font-size:12px;
+  
+}
+
 </style>
 </head>
 <body>
-<div id="login">
-        <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="" method="post">
-                            <h3 class="text-center text-info">Login</h3>
-                            <div class="form-group">
-                              <div class="text-danger"><?php  if(isset($_GET['message'])) {$message=$_GET['message'];echo $message;}?></div>
-                                <label for="email" class="text-info">Username:</label><br>
-                                <input type="text" name="email" id="username" class="form-control" placeholder="username(eg xyz@gmail.com)">
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="text-info">Password:</label><br>
-                                <input type="password" name="password" id="password" class="form-control" placeholder="password" >
-                            </div>
-                            <div class="form-group">
-                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember" type="checkbox"></span></label><br>
-                        
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
-                                &nbsp;<a href="forgot.php" class="btn btn-info btn-md">Forgot </a>
-                            </div>
-                            <br>
-                            <div id="register-link" class="text-right">
-                    <strong></strong>Don't have account!
-                 <a href="signup.php" class="btn btn-info btn-md" >Sign Up</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="box">
+  <form action="" method="POST">
+    <span class="text-center">login</span>
+    <div class="text-danger"><?php  if(isset($_GET['message'])) {$message=$_GET['message'];echo $message;}?></div>
+    <br>
+  <div class="input-container">
+    <input type="text" name="email" required=""/>
+    <label>Email</label>    
+  </div>
+  <div class="input-container">   
+    <input type="password" name="password"required=""/>
+    <label>Password</label>
+  </div>
+    <input type="submit" class="btn" name="submit" value="submit">
+</form> 
+</div>
 </body>
 </html>
 
@@ -87,7 +126,7 @@ if($row['email']==$email && $row['password']==$password)
 }
 else
 {
-
+ header("location:signin.php?message=username or password Error!!");
 }
 }
 $conn->close();

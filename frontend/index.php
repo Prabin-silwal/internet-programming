@@ -2,7 +2,7 @@
 session_start();
 error_reporting(0);
 include 'config/config.php';
-$sq="SELECT * FROM menu where menus='About'";
+$sq="SELECT * FROM menu";
   $username=$_SESSION['email'];
   $cookie=$_COOKIE['username'];
 ?>
@@ -19,8 +19,6 @@ $sq="SELECT * FROM menu where menus='About'";
     <link href="css/font-awesome.min.css" rel="stylesheet">
  <link href="css/animate.css" rel="stylesheet">
 <link href="css/responsive.css" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"> -->
-
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
@@ -187,7 +185,7 @@ echo '<li class="nav-item "><a class="navbar-brand" href="'. $reco['link'] .'">'
         </div>
         <div class="col-lg-4 mr-auto text-center">
           <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
-          <a class="d-block" href="contact.php">Contact us</a>
+          <a class="d-block" href="contact/contact.php">Contact us</a>
         </div>
       </div>
     </div>
@@ -214,8 +212,3 @@ echo '<li class="nav-item "><a class="navbar-brand" href="'. $reco['link'] .'">'
 </body>
 
 </html>
-<?php 
-
-?>
-
-setcookie('username',"" time()-3600)

@@ -22,7 +22,7 @@ $query=mysqli_query($conn,$sql);
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Menus</div>
       <div class="list-group list-group-flush">
-       <a href="#" class="list-group-item list-group-item-action bg-light">Home</a>
+        <a href="index.php" class="list-group-item list-group-item-action bg-light">Home</a>
         <a href="menusshow.php" class="list-group-item list-group-item-action bg-light">Menus</a>
         <a href="databaseshow.php" class="list-group-item list-group-item-action bg-light">Contact</a>
         <a href="catagories.php" class="list-group-item list-group-item-action bg-light">Catagories</a>

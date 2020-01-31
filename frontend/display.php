@@ -17,10 +17,10 @@ $username=$_SESSION['email'];
   <link href="css/simple-sidebar.css" rel="stylesheet">
 </head>
 <body>
-	<form action="" method="POSTvb ">
+	
 		 <div class="container-fluid">
        
-        <form action="" method="GET">
+       
 <div class="container">
   <table class="table table-hover">
    <thead>
@@ -32,9 +32,11 @@ $username=$_SESSION['email'];
       <th scope="col">Brand Name</th>
       </tr>
     </thead>
+    <form action="details.php" method="POST">
 		<?php 
+
 		$id=$_GET['id'];
-$sql="SELECT * from images where id='$id'";
+$sql="SELECT * from images where id=$id";
 $query=mysqli_query($conn,$sql);
 		if(mysqli_num_rows($query)>0)
 {
@@ -50,11 +52,19 @@ $query=mysqli_query($conn,$sql);
 			<td><?php echo $rows['brand']?></td>
 		</tr>
 		<tr class="info">
+			
 	<td><img src="<?php echo $rows['name']?>" style="width: 500px;" >
 </td></tr>
-			<?php 
+<tr>
+	<td>
 
-
+		<input type="hidden" name="id" value="<?php echo $rows['id'];?>">
+<input type="submit" name="buynow" class="btn btn-primary" value="Buy Now">
+<span><strong>**After Clicking Buy now It will send Email to the owner**</strong></span>
+</form>
+</td>
+</tr>			
+<?php 
 }
 }
 else
@@ -67,13 +77,7 @@ else
 }
 
 ?>
+
 </table>
-<input type="submit" name="buynow" class="btn btn-primary" value="Buy Now">
-</form>
 </body>
 </html>
-<?php
-if(isset($_POST['buynow'])){
-		echo "prabin";
-}
-?>

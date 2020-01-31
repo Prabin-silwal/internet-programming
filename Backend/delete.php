@@ -1,11 +1,10 @@
 
 <?php
 include 'config/config.php';
-if (isset($_GET['del'])) {
-	$id = $_GET['del'];
-	 mysqli_query($conn, "DELETE FROM menu WHERE id=$id");
-	 header("location:menusshow.php");
+$id=$_GET['id'];
+	 mysqli_query($conn, "DELETE FROM contact WHERE id=$id");
+	 header("location:databaseshow.php");
 
-}
+
 
 ?>

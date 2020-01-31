@@ -57,7 +57,7 @@ else
     
 echo '<li class="nav-item "><a class="navbar-brand" href="'. $reco['link'] .'">'. $reco['menus'];'</a></li>'; 
   }
-    echo '<li class="nav-item"><a class="navbar-brand" href=sirproduct.php >Products</a>';
+    // echo '<li class="nav-item"><a class="navbar-brand" href=sirproduct.php >Products</a>';
     echo '<li class="nav-item active"><a class="navbar-brand" href=logout.php >logout</a>';
  }
  else

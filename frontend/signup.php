@@ -2,6 +2,57 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script type="text/javascript">
+
+    function validate()
+    {
+        var uname=document.getElementById('uname').value;
+        var email=document.getElementById('email').value;
+        var password=document.getElementById('password').value;
+        var cpassword=document.getElementById('cpassword').value;
+        var number=document.getElementById('number').value;
+        var unameExp=/^[A-Za-z]+$/;
+        var numberExp = /^[0-9]+$/;
+        var emailExp= /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(!uname.match(unameExp)|| uname=='')
+        {   
+            document.getElementById('unerror').innerHTML='****Please enter valid username without space ******';
+            document.getElementById('uname').focus();
+            return false;
+        }
+        if(!email.match(emailExp)|| email=='')
+        {
+            document.getElementById('eerror').innerHTML='***** Please enter valid email********';
+            document.getElementById('email').focus();
+            return false;
+        }
+        if (password==''||cpassword=='')
+        {
+            document.getElementById('perror').innerHTML='***** Password field empty******';
+            document.getElementById('cperror').innerHTML='**********confirm password field empty*******';
+            document.getElementById('password').focus();
+            return false;
+        }
+        if(password!=cpassword)
+        {
+          
+            document.getElementById('pmatcherror').innerHTML='***** Password doesnot match********';
+            document.getElementById('cpassword').focus();
+            return false;
+        }
+        if(!number.match(numberExp))
+        {
+            document.getElementById('nerror').innerHTML='***** enter valid number******';
+            document.getElementById('number').focus();
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+    }
+</script>
 	<title>Sign Up </title>
   <link rel="stylesheet" href="../css/bootstrap.css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -76,12 +127,12 @@ table{
 	<p class="divider-text">
         <span class="bg-light">OR</span>
     </p>
-	<form role="form" method="POST" action="logindatabase.php"  onsubmit="return validate()">
+	<form role="form" onsubmit="return validate()" method="POST" action="logindatabase.php">
 	<div class="form-group input-group">
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 		 </div>
-        <input name="name" class="form-control" placeholder="Full name" type="text" id="uname">
+        <input name="name" class="form-control" placeholder="username" type="text" id="uname">
         
     </div>
      <div class="text-danger"> 
@@ -111,6 +162,9 @@ table{
     	<input name="phonenumber" class="form-control" placeholder="Phone number" type="phone" autocomplete="off" id="number">
 
     </div> 
+     <div class="text-danger"> 
+        <p id="nerror"></p>
+     </div> 
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
@@ -127,11 +181,9 @@ table{
 		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 		</div>
         <input class="form-control" placeholder="Repeat password" type="password" name="repassword" id="cpassword">
-       <p id="pmatcherror"></p>
     </div>  
     <div class="text-danger"> 
-        <!-- <p id="cerror"></p> -->
-     <p id="pmatcherror"></p>
+        <p id="pmatcherror"></p>
      </div>                               
     <div class="form-group">
         <input type="submit" class="btn btn-primary btn-block" name="submit" value="Create Account">  <!--  </button> -->
@@ -151,52 +203,6 @@ and selling product landing pages</p>
 </div>
 <br><br>
 </article>
-<script type="text/javascript">
-    function h_validate(){
-        alert("hello");
-    }
-    function validate()
-    {
-        var uname=document.getElementById('name').value;
-        var email=document.getElementById('email').value;
-        var password=document.getElementById('password').value;
-        var cpassword=document.getElementById('cpassword').value;
-        var number=document.getElementById('number').value;
-        var unameExp=/^[a-zA-Z0-9_\.-]+$/;
-        var emailExp=/^[a-zA-Z0-9_\.-]+\@[a-zA-Z0-9-]+\.[a-zA-Z0-9\.]{3.6}$/;
-        if(!uname.match('unameExp')&& uname=='')
-        {
-            document.getElementById('unerror').innerHTML='****Please enter valid name******';
-            document.getElementById('uname').focus();
-            return false;
-        }
-        else if(!email.match(emailExp)|| email=="")
-        {
-            document.getElementById('eerror').innerHTML='***** Please enter valid email********';
-            document.getElementById('email').focus();
-            return false;
-        }
-        else if (password==''||cpassword=='')
-        {
-            document.getElementById('perror').innerHTML='***** Password field empty******';
-            document.getElementById('cperror').innerHTML='**********confirm password field empty*******';
-            document.getElementById('password').focus();
-            return false;
-        }
-        else if(password!=cpassword)
-        {
-          
-             document.getElementById('pmatcherror').innerHTML='***** Password doesnot match********';
-            document.getElementById('cpassword').focus();
-            return false;
-        }
-        else
-        {
-            confirm('Are you sure?');
-            return true;
-        }
 
-    }
-</script>
 </body>
 </html>

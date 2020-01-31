@@ -24,34 +24,40 @@ else
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Products</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
     <link href="css/price-range.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
+	  <link href="css/font-awesome.min.css" rel="stylesheet">
+ <link href="css/animate.css" rel="stylesheet">
+<link href="css/responsive.css" rel="stylesheet">
 	<!-- carasoul -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
 	<!-- end -->
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
+   <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
     <!-- navbar -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="css/bootstrap.css" rel="stylesheet">
+   <link href="css/creative.min.css" rel="stylesheet">
+
 </head><!--/head-->
 
 <body>
 	<!-- <body id="page-top"> -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="background-color: white;">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="index.php" style="font-size: 20px;">Buy and Sell</a>
+      <a class="navbar-brand js-scroll-trigger" href="index.php" style="font-size: 20px; color: black;">Buy and Sell</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -72,10 +78,10 @@ else
 {
     foreach($record as $reco) 
   {   
-echo '<li class="nav-item "><a class="navbar-brand" style="font-size:20px;" href="'. $reco['link'] .'">'. $reco['menus'];'</a></li>'; 
+echo '<li class="nav-item "><a class="navbar-brand" style="font-size:20px;  color:black;" href="'. $reco['link'] .'">'. $reco['menus'];'</a></li>'; 
   }
-    echo '<li class="nav-item"><a class="navbar-brand" style="font-size:20px;" href=product.php >Product</a>';
-    echo '<li class="nav-item active"><a class="navbar-brand" style="font-size:20px;" href=logout.php >logout</a>';
+    echo '<li class="nav-item"><a class="navbar-brand" style="font-size:20px; color:black;" href=product.php >Product</a>';
+    echo '<li class="nav-item active"><a class="navbar-brand" style="font-size:20px; color:black;" href=logout.php >logout</a>';
 
  }		
  else
@@ -96,28 +102,28 @@ echo '<li class="nav-item "><a class="navbar-brand" style="font-size:20px;" href
     </div>
    
     <form action="catagories.php" method="GET">
-					<div class="col-sm-3" style="margin-left: 500px;">
+					<div class="col-sm-3" style="margin-left: 200px;">
 						<div class="search_box pull-right" >
-							<input type="text" name="search" placeholder="Search"/>
-							<!-- <a href="display.php?id=<?php echo $rows['id'];?>" class="btn btn-default add-to-cart"><i class="fa fa-search"></i></a> -->
-							<input type="submit" name="submit" class="btn btn-primary">
+							<input type="text" name="search" placeholder="Search" name="search" />
+							<button><i class="fa fa-search"></i></button>
+
 						</div>
 					</div>
 					</form>
 	
   </nav>
 		<!--  -->
-					
+		<br><br><br>		
 	<section id="slider">
 
 		<?php
-$queryImages = "SELECT * FROM images ORDER BY id DESC LIMIT 10";
+$queryImages = "SELECT * FROM images ORDER BY id DESC LIMIT 5";
 
 $result = mysqli_query($conn,$queryImages);
 $count=mysqli_num_rows($result);
 
 ?>
-        <div class="container" style="background-color: black height: 250px ; width: 1000px;">
+        <div class="container" style=" height: 250px ; width: 1000px; margin-top: 80px;">
 			<div class="row" >
 				<div class="col-sm-12">
 					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
@@ -153,19 +159,16 @@ $count=mysqli_num_rows($result);
                                                   {
                                                   	?>
                                 <div class="item active">                 
-                                    <h2><span>Buy</span> & Sell</h2>
                                	<img class="slideimage" src="<?php echo $row['name'];?>" style="width: 900px; height: 400px;"> 
                                                            
-                                                        </div>
+                                </div>
                                                             <?php 
                                                   }
 
                                                   else {
                                                   	?>
 
-                                                      <div class="item">
-                       <h2><span>Buy</span> & Sell</h2>
-									
+                   	<div class="item">					
                                 <img class="slideimage" src="<?php echo $row['name'];?>" style="width: 900px; height: 400px;"> 
                                                          
                                                         </div>
@@ -182,12 +185,17 @@ $count=mysqli_num_rows($result);
                                             ?>
                                              </div>
                                     </div>
+                                </div>
+                            </div>
 	</section>
 	<section>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="left-sidebar">
+						<br><br><br>
+						<br><br><br><br>
+						<br><br><br><br>
 						<h2>Category</h2>
 						<div class="panel-group category-products" id="accordian">
 		<form action="catagories.php" method="POST">
@@ -218,6 +226,8 @@ $count=mysqli_num_rows($result);
 				</div>
 				<div class="col-sm-9 padding-right">
 					<div class="features_items">
+						<br><br><br><br><br><br>
+						<br><br><br><br>
 						<h2 class="title text-center">Latest Items</h2>
 						<?php
 						$q = "SELECT * FROM images ORDER BY id DESC";
@@ -226,8 +236,10 @@ $res = mysqli_query($conn,$q);
 $count=mysqli_num_rows($res);
 for ($i=0;$i<6;$i++){
 	$rows=mysqli_fetch_assoc($res);
-	if($rows['sold']==0){
+	if($rows['sold']==0)
+	{
 						?>
+
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products" style="height: 300px; width: 300px;">
@@ -251,7 +263,7 @@ for ($i=0;$i<6;$i++){
 					}
 					else
 				{
-					$i=i-1;	
+					$i=$i-1;	
 				}
 				}
 

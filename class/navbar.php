@@ -1,97 +1,144 @@
-<?php 
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <style type="text/css">
+  * {margin: 0; padding: 0;}
+body {
+  background: hsl(120, 40%, 60%);
+  padding-top: 150px;
+  font: normal 18px Sniglet; color: white; text-align: center;
+}
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ipdatabase";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+/*general styles*/
+h1 {font-weight: normal; font-size: 36px; margin-bottom: 75px;}
+.fun-cube i {transform: scale(10); opacity: 0.1;}
 
-  $username=$_SESSION['email'];
-  $cookie=$_COOKIE['username'];
+#cuboid {
+  width: 400px; margin: 0 auto;
+  /*this also makes #cuboid a container for absolutely positioned descendants*/
+  perspective: 1000px;
+}
+#cuboid form {
+  /*counter translate*/
+  transform: translateZ(-20px);
+  /*propogate 3d space for children*/
+  transform-style: preserve-3d;
+  /*prevent height collapse as children are absolutely positioned*/
+  height: 40px;
+  /*for smooth animations*/
+  transition: all 0.35s;
+}
+
+/*faces*/
+.cuboid-text {
+  /*each face will be 40px high*/
+  line-height: 40px; height: 40px;
+  background: hsl(120, 40%, 20%);
+}
+.loader {
+  background: hsl(120, 40%, 30%);
+  animation: phase 1s infinite;
+}
+/*Lets create a pulsating animation for the loader face*/
+@keyframes phase {
+  50% {background: hsl(120, 70%, 30%);}
+}
+#email {
+  background: white; outline: none; border: 0 none;
+  font: inherit; text-align: left; color: hsl(120, 40%, 30%);
+  display: block; width: 100%; padding: 0 10px;
+  box-sizing: border-box;
+}
+#submit {display: none;}
+
+.submit-icon, .reset-icon {
+  position: absolute; top: 0; right: 0;
+  color: rgba(0, 0, 0, 0.25);
+  line-height: 40px; padding: 0 10px;
+  /*smooth transitions when user activates input and types something*/
+  transition: all 0.5s;
+  /*to make the icons feel like buttons*/
+  cursor: pointer;
+}
+/*.active = when the user is typing something*/
+.submit-icon.active {color: hsl(120, 40%, 30%);}
+.reset-icon {color: rgba(255, 255, 255, 0.25); font-size: 14px;}
+
+#cuboid div {position: absolute; top: 0; left: 0; width: 100%;}
+/*3D transforms. Each face will be rotated in multiples of -90deg and moved 20px(half of their 40px height) out*/
+#cuboid div:nth-child(1) {transform: rotateX(0deg) translateZ(20px);}
+#cuboid div:nth-child(2) {transform: rotateX(-90deg) translateZ(20px);}
+#cuboid div:nth-child(3) {transform: rotateX(-180deg) translateZ(20px);}
+#cuboid div:nth-child(4) {transform: rotateX(-270deg) translateZ(20px);}
+
+/*the form will have 4 states/classes(default+3) for rotation*/
+#cuboid form:hover, 
+#cuboid form.ready {transform: translateZ(-20px) rotateX(90deg);}
+#cuboid form.loading {transform: translateZ(-20px) rotateX(180deg);}
+#cuboid form.complete {transform: translateZ(-20px) rotateX(270deg);}
+ </style>
+ <script type="text/javascript">
+   //jQuery time
+
+//add '.ready' to form when user focuses on it
+$("#email").focus(function(){
+  $("#cuboid form").addClass("ready");
+})
+//remove '.ready' when user blus away but only if there is no content
+$("#email").blur(function(){
+  if($(this).val() == "")
+    $("#cuboid form").removeClass("ready");
+})
+
+//If the user is typing something make the arrow green/.active
+$("#email").keyup(function(){
+  //this adds .active class only if the input has some text
+  $(".submit-icon").toggleClass("active", $(this).val().length > 0);
+})
+
+//on form submit remove .ready and add .loading to the form
+$("#cuboid form").submit(function(){
+  $(this).removeClass("ready").addClass("loading");
+  //finish loading in 3s
+  setTimeout(complete, 3000);
+  //prevent default form submisson
+  return false;
+})
+function complete()
+{
+  $("#cuboid form").removeClass("loading").addClass("complete");
+}
+//reset/refresh functionality
+$(".reset-icon").click(function(){
+  $("#cuboid form").removeClass("complete");
+})
+ </script>
+</head>
+<body>
+<div class="fun-cube"><i class="fa fa-cube"></i></div>
+<h1>Forgot Your Password</h1>
+<div id="cuboid">
+  <form action="" method="POST">
+    <div>
+      <p class="cuboid-text">Enter email</p>
+    </div>
+    <div>
+      <label for="submit" class="submit-icon">
+        <a href="recovery.php"> <i class="fa fa-chevron-right"></i></a>
+
+      </label>
+      <input type="text" id="email" class="cuboid-text" placeholder="Your Email" autocomplete="off"/>
+    
+    </div>
+  </form>
+</div>
+</body>
+</html>
+<?php
+if(isset($_POST['submit']))
+{
+  echo "hello";
 }
 ?>
- <!DOCTYPE html>
- <html>
- <head>
- 	 <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-     <link href="../frontend/css/bootstrap.min.css" rel="stylesheet">
-      <link href="../frontend/css/animate.css" rel="stylesheet">
-	<link href="../frontend/css/main.css" rel="stylesheet">
-	<link href="..frontend/css/responsive.css" rel="stylesheet">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<!-- end -->
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
- 	<title></title>
- </head>
- <body>
- 
-<div class="header-bottom"><!--header-bottom-->
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-9">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						<div class="mainmenu pull-left">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-                                   
-                                        <?php
-                                        $sq="SELECT * FROM menu";
-       $select=mysqli_query($conn,$sq);
-      if(mysqli_num_rows($select)>0)
-    {
-       while($rows=mysqli_fetch_assoc($select))
-       {
-           $record[] = $rows;  
-         }
- foreach($record as $reco) 
-  {  
-  ?> 
-<li class="nav-item "><a class="navbar-brand" href="<?php echo $reco['link']; ?>" style="margin-left: 50px;"> 
-<?php echo $reco['menus']?></a></li> 
-<?php 
-  }
-
-  } 
-    if($username==true || $cookie==true )
-{
-	?>
-    <li class="nav-item"><a class="navbar-brand" href=product.php style="margin-left: 50px;" >Product</a>
-    <li class="nav-item active"><a class="navbar-brand" href=logout.php style="margin-left: 50px;">logout</a>
-    	<?php
- }
- else
- { ?>
-      <li class="nav-item active"><a class="navbar-brand" href=signin.php style="margin-left: 50px;">Login</a>
-      	<?php
-
- }
-   ?>		</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-	
- </body>
- </html>

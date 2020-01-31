@@ -4,6 +4,8 @@ include 'config/config.php';
 <?php
 session_start();
 if(isset($_POST['submit'])){
+	echo "here";
+	die();
 $name=$_POST['name'];
 $repassword=$_POST['repassword'];
 $password=$_POST['password'];
