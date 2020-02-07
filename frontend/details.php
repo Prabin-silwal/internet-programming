@@ -1,5 +1,9 @@
 <?php 
 include 'config/config.php';
+require_once 'dompdf/autoload.inc.php';
+use Dompdf/Dompdf;
+$document=new Dompdf;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,15 +15,14 @@ include 'config/config.php';
 	if(isset($_POST['buynow']))
 	{
 	$id=$_POST['id'];
-	$sql="SELECT email FROM images where id=$id";
-	
+	$sql="SELECT * FROM images where id=$id";
 	$query=mysqli_query($conn,$sql);
-	$rows=mysqli_fetch_assoc($query);
+
 	$email=$rows['email'];
-	$sq="SELECT phonenumber FROM login where email='$email'";
-	$select=mysqli_query($conn,$sq);
+	$sq="SELECT phonenumber FROM login where email='$email'"; 
+	$select=mysqli_query($conn,$sq);  
 	$row=mysqli_fetch_assoc($select);
-	echo $row['phonenumber'];
+	
 
 }
 	?>

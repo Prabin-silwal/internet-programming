@@ -1,6 +1,14 @@
 <?php  session_start(); 
 include 'config/config.php';
 $mail=$_SESSION['email'];
+if($mail==true )
+{
+
+}
+else
+{
+	header("location:signin.php");
+}
 $s="SELECT verified from login where email='$mail'";
 $query=mysqli_query($conn,$s);
 $rows=mysqli_fetch_assoc($query);
@@ -32,7 +40,7 @@ else
 <body>
 	<form action="" method="POST">
 	<div class="form-group">
- <input maxlength='5' value='0123456'/>
+  <label for="usr">Enter the Code:</label>
   <input type="number"  class="form-control" id="usr" name="code">
   <input type="submit" name="submit" value="Verify" class="btn btn-primary">
 </div>

@@ -1,5 +1,6 @@
 <?php
 include 'config/config.php';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -171,16 +172,16 @@ while($rows=mysqli_fetch_assoc($select))
 	}
 }
 if($password==$repassword)
-			{
+{
 					$sql="INSERT into admin(username,email,password) values('$name','$email','$encrypt' )";
 					mysqli_query($conn,$sql);
 					$_SESSION['email']=$email;
-					 header("location:index.php");
+				    
 	}
 	else 
-			{
+	{
 			 header("location:signup.php?message=password did not match");
-			die();
+		
 			}
 	}
 	

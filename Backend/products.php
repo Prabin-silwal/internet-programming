@@ -1,4 +1,15 @@
-<?php  include 'config/config.php' ?>
+<?php  include 'config/config.php'
+session_start();
+$admin=$_SESSION['admin'];
+if($admin==true)
+{
+
+}
+else
+{
+  header("location:sigin.php");
+}
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +31,7 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Users</div>
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Home</a>
+        <a href="index.php" class="list-group-item list-group-item-action bg-light">Home</a>
         <a href="menusshow.php" class="list-group-item list-group-item-action bg-light">Menus</a>
         <a href="databaseshow.php" class="list-group-item list-group-item-action bg-light">Contact</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>

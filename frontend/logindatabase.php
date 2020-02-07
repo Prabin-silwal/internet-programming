@@ -3,9 +3,8 @@ include 'config/config.php';
 ?>
 <?php
 session_start();
-if(isset($_POST['submit'])){
-	echo "here";
-	die();
+if(isset($_POST['submit']))
+{
 $name=$_POST['name'];
 $repassword=$_POST['repassword'];
 $password=$_POST['password'];
@@ -27,7 +26,7 @@ foreach ($record as $key )
 	else 
 	{
 		 header("location:signup.php?user=username already taken!!");
-		die();
+		
 	}
 }
 if($password==$repassword)

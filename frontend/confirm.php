@@ -1,7 +1,16 @@
 <?php 
 include 'config/config.php';
 session_start();
- $name=$_SESSION['email'];
+error_reporting(0);	
+ $name=$_SESSION['forgot'];
+ if($_SESSION['forgot']==true)
+ {
+
+ }
+ else
+ {
+ 	header("location:forgot.php?message=Enter the email first");
+ }
 ?>
 
 <!DOCTYPE html>
@@ -115,15 +124,19 @@ body {
    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
 });
 	</script>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
 	 <form action="" method="POST">
+	 	<h1>Password Reset</h1>
 		<div class="login-page">
   <div class="form">
     <form class="login-form">
       <input type="password" placeholder="Password" name="password" />
       <input type="password" placeholder="Re-type password" name="cpassword" />
       <button type="submit" name="submit">Confirm</button>
+      <br><br><br>
+       <button type="submit" name="Cancel" class="btn btn-primary">Cancel</button>
     </form>
   </div>
 </div>
@@ -134,31 +147,34 @@ body {
 
 		
 		<?php
-if($_SESSION['email']==true){
-		 if(isset($_POST['submit'])){
-		 	$password=$_POST['password'];
-		 	$cpassword=$_POST['cpassword'];
-		 	if($password==$cpassword){
-		 		$encrypt=sha1($password);
-		 		$sql="UPDATE  login SET password='$encrypt' WHERE email='$name'";
-		 		mysqli_query($conn,$sql);
-		 		session_destroy();
-		 		header("location:index.php");
-		 	}
-		 	else
-		 	{
-		 	?>
-<script type="text/javascript">
-	alert("password not changed");
-	header("location:signin.php");
-</script>
-<?php
-		 	
-		 	}
-		 }
-		}
-		else
-		{
-			header("location:forgot.php?message=enter the email first");
-		}
+
+   if(isset($_POST['submit']))
+     {
+      $password=$_POST['password'];
+      $cpassword=$_POST['cpassword'];
+      if($password==$cpassword){
+        $encrypt=sha1($password);
+        $sql="UPDATE  login SET password='$encrypt' WHERE email='$name'";
+        mysqli_query($conn,$sql);
+        session_destroy();
+        header("location:index.php");
+        }
+      else{
+        ?>
+        <script type="text/javascript">
+          alert("Password not changed");
+        </script>
+
+        <?php
+      } 
+      }
+
+      if(isset($_POST['Cancel']))
+      {
+        session_destroy();
+        header("location:index.php");
+      }
+
+
+
 ?>

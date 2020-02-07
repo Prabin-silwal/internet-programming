@@ -2,18 +2,57 @@
 include 'config/config.php';
 $sql="SELECT * FROM catagories";
 $query=mysqli_query($conn,$sql);
+$admin=$_SESSION['admin'];
+if($admin==true)
+{
+
+}
+else
+{
+  header("location:signin.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Catagories</title>
-	 <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title></title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
   <link href="css/simple-sidebar.css" rel="stylesheet">
+   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="plugins/morris/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker-bs3.css">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
 </head>
 <body>
@@ -64,11 +103,10 @@ $query=mysqli_query($conn,$sql);
   echo '<td>'.$rows['id'].'</td>';        
   echo '<td>'.$rows['catagory'].'</td>';
   ?>
- <form action="" method="POST">
+ <form action="delete.php" method="GET">
 
   <td>
   	<input type="hidden" name="id" value="<?php echo $rows['id']; ?>">
-  	<!-- <input type="submit" name="edit" value="Edit" class="btn btn-primary"> -->
   <input type="submit" name="delete" value="Delete" class="btn btn-danger"></td>
   </form>
   <?php
@@ -100,12 +138,6 @@ if (isset($_POST['submit'])) {
   $catagory=$_POST['catagory'];
   $s="INSERT INTO catagories (catagory) VALUES ('$catagory')";
    mysqli_query($conn,$s);
-     header("location:catagories.php");
+    
 }
-?>
-<?php 
-if(isset($_POST['delete']))
-	$id=$_POST['id'];
-	 $sq="DELETE FROM catagories WHERE id=$id";
-	mysqli_query($conn,$sq);
 ?>

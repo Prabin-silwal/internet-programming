@@ -1,5 +1,14 @@
 <?php include 'config/config.php';
+session_start();
+$admin=$_SESSION['admin'];
+if($admin==true)
+{
 
+}
+else
+{
+  header("location:sigin.php");
+}
  $sql="SELECT * FROM login";
  $query=mysqli_query($conn,$sql);
 ?>

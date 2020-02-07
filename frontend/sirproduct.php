@@ -55,7 +55,7 @@ else
 
 <body>
 	<!-- <body id="page-top"> -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="background-color: white;">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav" style="background-color: orange;">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="index.php" style="font-size: 20px; color: black;">Buy and Sell</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,10 +78,10 @@ else
 {
     foreach($record as $reco) 
   {   
-echo '<li class="nav-item "><a class="navbar-brand" style="font-size:20px;  color:black;" href="'. $reco['link'] .'">'. $reco['menus'];'</a></li>'; 
+echo '<li class="nav-item "><a class="navbar-brand" style="font-size:20px;   color:black; padding:5px;" href="'. $reco['link'] .'">'. $reco['menus'];'</a></li>'; 
   }
-    echo '<li class="nav-item"><a class="navbar-brand" style="font-size:20px; color:black;" href=product.php >Product</a>';
-    echo '<li class="nav-item active"><a class="navbar-brand" style="font-size:20px; color:black;" href=logout.php >logout</a>';
+    echo '<li class="nav-item"><a class="navbar-brand" style="font-size:20px;   color:black;  padding:5px;" href=product.php >Product</a>';
+    echo '<li class="nav-item active"><a class="navbar-brand" style="font-size:20px;   padding:5px; color:black;" href=logout.php >logout</a>';
 
  }		
  else
@@ -101,7 +101,7 @@ echo '<li class="nav-item "><a class="navbar-brand" style="font-size:20px;  colo
       </div>
     </div>
    
-    <form action="catagories.php" method="GET">
+    <form action="search.php" method="GET">
 					<div class="col-sm-3" style="margin-left: 200px;">
 						<div class="search_box pull-right" >
 							<input type="text" name="search" placeholder="Search" name="search" />
@@ -114,16 +114,16 @@ echo '<li class="nav-item "><a class="navbar-brand" style="font-size:20px;  colo
   </nav>
 		<!--  -->
 		<br><br><br>		
-	<section id="slider">
+	<section id="slider" style="height: 500px;">
 
 		<?php
-$queryImages = "SELECT * FROM images ORDER BY id DESC LIMIT 5";
+$queryImages = "SELECT * FROM images ORDER BY rand() LIMIT 5";
 
 $result = mysqli_query($conn,$queryImages);
 $count=mysqli_num_rows($result);
 
 ?>
-        <div class="container" style=" height: 250px ; width: 1000px; margin-top: 80px;">
+        <div class="container">
 			<div class="row" >
 				<div class="col-sm-12">
 					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
@@ -136,7 +136,7 @@ $count=mysqli_num_rows($result);
                                             {
 
                                                     if($j==0){
-                              echo ' <li data-target="#myCarousel" data-slide-to="'.$j.'" class="active"></li>';
+                    echo ' <li data-target="#myCarousel" data-slide-to="'.$j.'" class="active"></li>';
 
                                                     }
                                                     else{
@@ -148,7 +148,7 @@ $count=mysqli_num_rows($result);
                                         ?>
 
                                         </ol>
-                                       <div class="carousel-inner" style="height: 500px width:1000px;">
+                                       <div class="carousel-inner" style="height: 1000px width:2000px;">
   <?php
                                           for($j=0;$j<$count;$j++)
                                           {
@@ -159,7 +159,7 @@ $count=mysqli_num_rows($result);
                                                   {
                                                   	?>
                                 <div class="item active">                 
-                               	<img class="slideimage" src="<?php echo $row['name'];?>" style="width: 900px; height: 400px;"> 
+                               	<img class="slideimage" src="<?php echo $row['name'];?>" style="width: 1500px; height: 500px; margin-right: 40px;"> 
                                                            
                                 </div>
                                                             <?php 
@@ -169,7 +169,7 @@ $count=mysqli_num_rows($result);
                                                   	?>
 
                    	<div class="item">					
-                                <img class="slideimage" src="<?php echo $row['name'];?>" style="width: 900px; height: 400px;"> 
+                                <img class="slideimage" src="<?php echo $row['name'];?>" style="width: 1500px; height: 500px; margin-right: 40px;"> 
                                                          
                                                         </div>
                                                             <?php 
@@ -188,11 +188,11 @@ $count=mysqli_num_rows($result);
                                 </div>
                             </div>
 	</section>
-	<section>
+	<section  >
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-3">
-					<div class="left-sidebar">
+					<div class="left-sidebar" >
 						<br><br><br>
 						<br><br><br><br>
 						<br><br><br><br>

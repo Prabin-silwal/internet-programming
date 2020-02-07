@@ -4,9 +4,9 @@ include 'config/config.php';
 session_start();
 if (isset($_POST['submit']))
 {
-  
+  session_destroy();
   $username=$_POST['email'];
-  $_SESSION['email']=$username;
+  $_SESSION['em']=$_POST['email'];
   $recovery=rand(10000,99000);
   $sq="SELECT * FROM login where email='$username'";
  $query=mysqli_query($conn,$sq);
@@ -51,10 +51,9 @@ $htmlContent = '
 $headers = "MIME-Version: 1.0" . "\r\n"; 
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
 $headers .= 'From: '.$fromName.'<'.$from.'>' . "\r\n"; 
-
 if(mail($to, $subject, $htmlContent, $headers))
 { 
-    header("location:recovery.php?name=$name");
+    header("location:recovery.php?name=$username");
 }
 else
 { 
@@ -253,8 +252,12 @@ label:hover:before {
     $form.find('.login-form-main-message').removeClass('show error success').html('');
   }
  </script>
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+   
 <div class="text-center" style="padding:50px 0">
   <div class="logo" style="font-size: 20px; color: red; font-family: Arial, Helvetica, sans-serif;">Forgot password <i class="fal fa-lock-alt"></i> </div>
   
@@ -269,6 +272,7 @@ label:hover:before {
           <div class="form-group">
             <label for="fp_email" class="sr-only">Email address</label>
             <input type="email" class="form-control" id="fp_email" name="email" placeholder="email address">
+            <div class="text-danger"><?php  if(isset($_GET['message'])) {$message=$_GET['message'];echo $message;}?></div>
           </div>
         </div>
         <button type="submit" class="login-button" name="submit"><i class="fa fa-chevron-right"></i></button>

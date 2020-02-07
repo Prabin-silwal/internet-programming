@@ -1,8 +1,8 @@
 <?php 
 include 'config/config.php';
+error_reporting(0);
 session_start();
- $name=$_SESSION['email'];
-
+$email=$_GET['name'];
 ?><!DOCTYPE html>
 <html>
 <head>
@@ -24,19 +24,31 @@ session_start();
 <?php
 if(isset($_POST['submit']))
 {
-	$sql="SELECT * FROM recoverykeys where email='$name' ";
+	$name=$_SESSION['em'];
+	$sql="SELECT * FROM recoverykeys where email=$email ";
 	$query=mysqli_query($conn,$sql);
-	$row=mysqli_fetch_array($query);
+	
 	$number=$_POST['recovery'];
-	if($row['recovery']==$number){
-		
-		 mysqli_query($conn, "DELETE FROM recoverykeys WHERE email='$name'");
+	while($row=mysqli_fetch_array($query))
+	{
+	if($row['recovery']==$number)
+	{
+		$_SESSION['forgot']=$name;
+		 mysqli_query($conn, "DELETE FROM recoverykeys WHERE email=$email");
 		 header("location:confirm.php");
 		
 	}
+
 	else
 	{
-		echo "failed";
+		
+		?>
+		<script type="text/javascript">
+			alert("Failed to change password");
+		</script>
+
+		<?php
 	}
+}
 }
 ?>

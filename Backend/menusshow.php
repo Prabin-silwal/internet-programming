@@ -39,10 +39,9 @@ $query=mysqli_query($conn,$sql);
           <span class="navbar-toggler-icon"></span>
         </button>
       </nav>
-
       <div class="container-fluid">
        
-        <form action="" method="GET">
+        
 <div class="container">
   <table class="table table-hover">
    <thead>
@@ -54,6 +53,7 @@ $query=mysqli_query($conn,$sql);
       </tr>
     </thead>
 
+
     <?php 
     
    if(mysqli_num_rows($query)>0)
@@ -61,26 +61,27 @@ $query=mysqli_query($conn,$sql);
       while($rows=mysqli_fetch_assoc($query))
       {
         ?>
-      
+  <form action="delete.php" method="POST">
    <tr class="info">
   <td><?php echo  $rows['id']?>       
   <td><?php echo $rows['menus']?> 
   <td><?php echo  $rows['link']?> 
   <td>
-     <a href="edit.php?edit=<?php echo $rows['id']; ?>" class="btn btn-primary" >Edit</a>
-  <a href="delete.php?del=<?php echo $rows['id']; ?>" class="btn btn-danger">Delete</a>
+    <a href="edit.php?edit=<?php echo $rows['id']; ?>" class="btn btn-primary" >Edit</a>
+    <input type="hidden" value="<?php echo $rows['id'];?>" name="id">
+    <input type="submit" name="del" value="Delete" class="btn btn-danger">
+     
     </a></td>
     <?php 
       }
     } 
  ?>
   </tr>
-   
+    </form>
  </table>
   </div>
     </div>
-  </div>
-  </form>
+ 
 <form action="" method="POST">
  <div class="form-group">
     <label class="control-label col-sm-2" for="pwd">Menu:</label>
@@ -100,11 +101,14 @@ $query=mysqli_query($conn,$sql);
 </body>
 </html>
 <?php
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']))
+ {
   $menu=$_POST['menu'];
   $link=$_POST['link'];
   $s="INSERT INTO menu (menus,link) VALUES ('$menu','$link')";
-   $q=mysqli_query($conn,$s);
+   mysqli_query($conn,$s);
    header("location:menusshow.php");
 }
+
+
 ?>
